@@ -1,4 +1,4 @@
-<div style="width: 800px;">
+<div style="width: 800px; margin-left: 50px; margin-right: 50px;">
     <table class = "table table-hover">
         <thead>
             <th scope = "col">
@@ -14,9 +14,17 @@
                 Aforo maximo
             </th>
             <th style="width: 100px;" scope="col">
-                Aforo disponible
+                Ver reservas
             </th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            <tr *ngFor="let res of restaurantes">
+                <td>{{res.nombre}}</td>
+                <td>{{res.direccion}}</td>
+                <td>{{res.telefono}}</td>
+                <td>{{res.aforo}}</td>
+                <td><a href="/reservarest/{{res.nombre}}">Ver</a></td>
+            </tr>
+        </tbody>
     </table>
 </div>

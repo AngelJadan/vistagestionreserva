@@ -12,6 +12,9 @@ import { RestaurantesComponent } from './components/restaurantes/restaurantes.co
 import { BuscarclienteComponent } from './components/buscarcliente/buscarcliente.component';
 import { NuevorestauranteComponent } from './components/nuevorestaurante/nuevorestaurante.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { ReservasinicioComponent } from './components/reservasinicio/reservasinicio.component';
+import { ReservarComponent } from './components/reservar/reservar.component';
+import { ListClienteReservaComponent } from './components/list-cliente-reserva/list-cliente-reserva.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { InicioComponent } from './inicio/inicio.component';
     RestaurantesComponent,
     BuscarclienteComponent,
     NuevorestauranteComponent,
-    InicioComponent
+    InicioComponent,
+    ReservasinicioComponent,
+    ReservarComponent,
+    ListClienteReservaComponent
   ],
   imports: [
     BrowserModule,

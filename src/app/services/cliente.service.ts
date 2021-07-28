@@ -7,15 +7,16 @@ import { Injectable } from '@angular/core';
 export class ClienteService {
   url:string;
   constructor(private http: HttpClient) {
-    this.url = 'https://';
+    this.url = 'http://localhost:8080/gestionreservas/rest/cliente';
    }
   public getCliente(cedula:string){
-    return this.http.get(this.url+"");
+    console.log(cedula);
+    return this.http.get(this.url+"/search?cedula="+cedula);
   }
-  public postCliente(body:string){
+  public postCliente(body:URLSearchParams){
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})
     }
-    return this.http.post(this.url+"//",body,httpOptions);
+    return this.http.post(this.url+"/save_coustumer",body,httpOptions);
   }
 }

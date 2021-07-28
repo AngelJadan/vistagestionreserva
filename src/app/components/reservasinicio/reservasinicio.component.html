@@ -1,0 +1,32 @@
+<div style="margin-left: 50px; margin-block-start: 30px;">
+    <form [formGroup]="formRest" (submit)="listReservas()">
+        <label for="">Fecha</label>
+        <br>
+        <input type="date" formControlName="fecha">
+        <br>
+        <button class="btn btn-primary" [disabled]="!formRest.valid">Buscar</button>
+    </form>
+    <div style="margin-block-start: 20px; margin-right: 100px;">
+        <table class="table table-striped">
+            <thead>
+                <th>
+                    Cedula
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Hora
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let res of reservas">
+                    <td> {{res.cedula}}</td>
+                    <td> {{res.cliente}}</td>
+                    <td> {{res.hora}}</td>
+                    <td> {{res.asistentes}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

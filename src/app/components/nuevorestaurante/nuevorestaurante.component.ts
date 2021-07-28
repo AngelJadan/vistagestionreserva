@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RestauranteService } from 'src/app/services/restaurante.service';
 
 @Component({
   selector: 'app-nuevorestaurante',
@@ -15,7 +16,7 @@ export class NuevorestauranteComponent implements OnInit {
 
   public formRestaurante: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private RestauranteService:RestauranteService) {
     this.formRestaurante = formBuilder.group({});
   }
   ngOnInit(): void {
@@ -28,13 +29,13 @@ export class NuevorestauranteComponent implements OnInit {
       ]],
       telefono:['',[
         Validators.required,
-        Validators.pattern(/[0-9]/),
+        Validators.pattern(/^[0-9]+/),
         Validators.minLength(7),
         Validators.maxLength(10)
       ]],
       aforo: ['',[
         Validators.required,
-        Validators.pattern(/[0-9]/),
+        Validators.pattern(/^[0-9]+/),
         Validators.minLength(1),
         Validators.maxLength(6)
       ]]
@@ -82,5 +83,27 @@ export class NuevorestauranteComponent implements OnInit {
     }
   }
   saveRestaurante(){
+    let body = new URLSearchParams();
+    if(this.formRestaurante.status=="VALID"){
+      body.set("nombre",this.formRestaurante.value.nombre);
+      body.set("direccion",this.formRestaurante.value.direccion);
+      body.set("telefono",this.formRestaurante.value.telefono);
+      body.set("aforo",this.formRestaurante.value.aforo);
+
+      this.RestauranteService.postRestaurante(body)
+      .subscribe((response: any)=>{
+        console.log(response);
+        if(response.code === 200) {
+          this.formRestaurante.value.nombre = "";
+          this.formRestaurante.value.direccion = "";
+          this.formRestaurante.value.telefono = "";
+          this.formRestaurante.value.aforo = "";
+          
+          alert(response.messaje);
+        }else{
+          alert("Error: "+response.messaje);
+        }
+      })
+    }
   }
 }

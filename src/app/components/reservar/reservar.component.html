@@ -1,0 +1,55 @@
+<div style="margin-block-start: 20px;margin-left: 50px; margin-block-end: 30px;">
+    <form class="form-inline" [formGroup]="formCli" (submit)="buscarcliente()" novalidate>
+        <input class="form-control mr-sm-2" type="search" placeholder="Cédula cliente" aria-label="Search"
+            formControlName="cedula">
+        <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!formCli.valid">Buscar</button>
+    </form>
+</div>
+<div style="margin-left: 50px;">
+    <form [formGroup]="formReserva" (submit)="saveReserva()">
+        <div class="form-group" style="width: 200px">
+            <label for="lblcedula">Cédula</label>
+            <br>
+            {{ced}}
+        </div>
+        <div class="form-group" style="width: 200px">
+            <label for="lblcliente">Cliente</label>
+            <br>
+            {{nombre}} {{apellido}}
+        </div>
+        <hr>
+        <div style="background-color:#DAF7A6; width:200px;">
+            <p style="color:#1D9E19;">
+                {{smsok}}
+            </p>
+        </div>
+        <div style="background-color:#F6B3A6; width:200px;">
+            <p style="color:#C70039;">
+                {{smserror}}
+            </p>
+        </div>
+        <div class="form-group" style="width: 200px">
+            <label for="lblfecha">Restaurante</label>
+            <select name="" id="" formControlName="restaurante">
+                <option value="">Seleccionar</option>
+                <option *ngFor="let res of restaurantes" [value]="res.rest">{{res.rest}}</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="width: 200px">
+            <label for="lblfecha">Fecha</label>
+            <input #fecha class="form-control" type="date" id="fecha" formControlName="fecha">
+        </div>
+        <div class="form-group" style="width: 120px;">
+            <label for="lblhora">Hora</label>
+            <input #hora class="form-control" type="time" id="hora" formControlName="hora">
+        </div>
+        <div class="form-group" style="width: 100px;">
+            <label for="lblasistentes">Asistentes</label>
+            <input #asistentes class="form-control" type="number" id="asistentes" formControlName="asistentes" min="1">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" [disabled]="!formReserva.valid">Agendar</button>
+        </div>
+    </form>
+</div>

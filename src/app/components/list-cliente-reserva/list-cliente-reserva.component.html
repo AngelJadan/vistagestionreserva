@@ -1,0 +1,29 @@
+<div style="margin-left: 50px; margin-block-start: 50px;">
+    <form class="form-inline" [formGroup]="formRest" (submit)="listReservas()">
+        <input class="form-control mr-sm-2" type="search" placeholder="Cedula" aria-label="Search"
+        formControlName="cedula">
+        <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!formRest.valid">Buscar</button>
+      </form>
+</div>
+<div style="margin-left: 50px; margin-block-start: 20px; margin-right:150px;">
+    <table class="table table-striped">
+        <thead>
+            <th>
+                Restaurante
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Hora
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let res of reservas">
+                <td>{{res.restaurante}}</td>
+                <td>{{res.fecha}}</td>
+                <td>{{res.hora}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

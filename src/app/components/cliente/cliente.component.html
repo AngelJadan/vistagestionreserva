@@ -1,6 +1,6 @@
 <div style="margin-left: 40px">
     <form [formGroup]="formCliente" (submit)="save()" novalidate>
-        <div style="width: 300px;">
+        <div style="width: 300px; margin-block-end: 50px; margin-left:10px; margin-block-start: 20px;">
             <div class="form-group" style="width: 150px">
                 <label for="lblcedula">Cédula</label>
                 <input #cedula type="text" class="form-control" id="cedula" formControlName="cedula" 
@@ -37,6 +37,14 @@
                 <input #correo type="email" class="form-control" id="correo" formControlName="correo"
                 (keyup)="validCorreo(correo.value)">
                 <p style="color:red;">{{smscorreo}}</p>
+            </div>
+            <div>
+                <p style="background-color: #DAF7A6; color: #1A9E25;">
+                    {{smsok}}
+                </p>
+                <p style="background-color:#FF5733; color: #C70039">
+                    {{smserror}}
+                </p>
             </div>
             <div>
                 <button class="btn btn-success" [disabled]="!formCliente.valid">Guardar</button>
