@@ -11,6 +11,7 @@ export class ListClienteReservaComponent implements OnInit {
 
   formRest:FormGroup;
   reservas =  new Array;
+  client:string = "";
 
   constructor(private formBuilder: FormBuilder, private ReservaService: ReservaService) {
     this.formRest = this.formBuilder.group({});
@@ -24,12 +25,14 @@ export class ListClienteReservaComponent implements OnInit {
     });
   }
   listReservas(){
+    this.client = "";
     this.reservas = new Array;
     this.ReservaService.getReservaCliente(this.formRest.controls["cedula"].value)
     .subscribe((res:any)=>{
       console.log("resp ", res);
       if(res.length>0){
         for(var i=0; i<res.length; i++){
+          this.client = "Cliente: "+res[i].cliente.nombre+" "+res[i].cliente.apellido;
           var obj ={
             restaurante: res[i].restaurante.nombre,
             fecha: res[i].fecha.year+"- "+res[i].fecha.monthValue+"-"+res[i].fecha.dayOfMonth,
@@ -37,6 +40,8 @@ export class ListClienteReservaComponent implements OnInit {
           }
           this.reservas.push(obj);
         }
+      }else{
+        this.client = "Cliente sin reservas.";
       }
     });
     console.log("enter");
